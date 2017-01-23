@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage[\Sexpr{orientation()}, margin=0.5in]{geometry}
+
+\begin{document}
+\begin{center}\Large{\Sexpr{input$tournament_name}} \\
+\large{\Sexpr{input$location}} \\
+\large{\Sexpr{input$date}}
+\end{center}
+<<brackets, echo = FALSE, results = 'asis'>>=
+library(knitr)
+library(xtable)
+large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(brackets())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+if(input$pool_count >= 7) {
+  print(xtable(brackets()[,1:4]), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col))
+  print(xtable(brackets()[,5:input$pool_count]), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col))
+} else print(xtable(brackets()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col))
+@
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{pools()[1]}}}\end{center}
+<<pool1, echo = FALSE, results = 'asis'>>=
+large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule1())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule1()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 2) pools()[2]}}}\end{center}
+<<pool2, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 2) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule2())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule2()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 3) pools()[3]}}}\end{center}
+<<pool3, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 3) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule3())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule3()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 4) pools()[4]}}}\end{center}
+<<pool4, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 4) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule4())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule4()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 5) pools()[5]}}}\end{center}
+<<pool5, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 5) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule5())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule5()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 6) pools()[6]}}}\end{center}
+<<pool6, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 6) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule6())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule6()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 7) pools()[7]}}}\end{center}
+<<pool7, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 7) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule7())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule7()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\vspace{0.2in}
+\begin{minipage}{\textwidth}
+\begin{center}\Large{\textbf{\Sexpr{if(input$pool_count >= 8) pools()[8]}}}\end{center}
+<<pool8, echo = FALSE, results = 'asis'>>=
+if(input$pool_count >= 8) {
+  large <- function(x){
+  paste0('{\\Large{\\bfseries ', x, '}}')
+}
+
+rws <- seq(1, (nrow(schedule8())-1), by = 2)
+col <- rep("\\rowcolor[gray]{0.9}", length(rws))
+
+cat("\\makebox[\\textwidth]{")
+print(xtable(schedule8()), sanitize.colnames.function = large, 
+      auto = TRUE, booktabs = TRUE, include.rownames = FALSE, 
+      add.to.row = list(pos = as.list(rws), command = col),
+      floating = FALSE)
+cat("}")
+}
+@
+\end{minipage}
+\end{document}
