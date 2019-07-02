@@ -1,0 +1,57 @@
+
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage[margin=0.5in]{geometry}
+\begin{document}
+
+\includegraphics[width=3cm, height=3cm]{logo.png}
+
+ \begin{center}\Huge{\Sexpr{input$tournament_name}}\end{center}
+
+\section{\Sexpr{input$bracket_a_name}}
+<<bracket-a, echo=F>>=
+full_width_param <- dim(bracket_a_schedule_plain())[[2]] > 5
+bracket_a_schedule_plain() %>% 
+  set_names(str_split(bracket_a_rooms(), ", ")[[1]] %>% 
+              {if(bracket_sizes()[[1]] %% 2 == 1 |
+                  str_detect(input$bracket_a_format, "bye")) {append(., "BYE", 0)}
+                else{.}} %>% 
+              append("Round", 0)) %>%
+  mutate(Packet = assigned_packets()[1:dim(bracket_a_schedule_plain())[[1]]]) %>% 
+  kable("latex", booktabs = T, linesep = "") %>% 
+  kable_styling(latex_options = "striped", full_width = full_width_param) %>%
+  column_spec(1, width = "3em")
+  @
+  
+\section{\Sexpr{input$bracket_b_name}}
+<<bracket-b, echo=F>>=
+bracket_b_schedule_plain() %>% 
+      set_names(str_split(bracket_b_rooms(), ", ")[[1]] %>% 
+                  {if(bracket_sizes()[[2]] %% 2 == 1 |
+                      str_detect(input$bracket_b_format, "bye")) 
+                    {append(., "BYE", 0)}
+                    else{.}} %>% 
+                  append("Round", 0)) %>%
+      mutate(Packet = assigned_packets()[1:dim(bracket_b_schedule_plain())[[1]]]) %>% 
+  kable("latex", booktabs = T, linesep = "") %>% 
+  kable_styling(latex_options = "striped") %>%
+  column_spec(1, width = "3em")
+  @
+  
+  \end{document}
